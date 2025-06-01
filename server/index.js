@@ -14,7 +14,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
 
 app.get('/', (req, res) => {
-  res.json("Hey!! Welcome to Server")
+  res.json({
+    message: "Server is Running " + PORT
+  })
 })
 try {
   mongoose.connect(process.env.MONGO_URI)
