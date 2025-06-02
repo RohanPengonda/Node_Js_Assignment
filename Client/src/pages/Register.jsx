@@ -54,10 +54,8 @@ const Register = () => {
     }
 
     try {
-      const response = await axios.post(
-        "http://localhost:5000/api/auth/register",
-        data
-      );
+      const baseUrl = import.meta.env.VITE_SERVER_URL;
+      const response = await axios.post(`${baseUrl}/api/auth/register`, data);
       toast.success("Registered successfully!");
       console.log(response.data);
 

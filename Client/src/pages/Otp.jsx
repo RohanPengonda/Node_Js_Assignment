@@ -14,8 +14,9 @@ const Otp = () => {
     e.preventDefault();
     try {
       // console.log(email, code);
+      const baseUrl = import.meta.env.VITE_SERVER_URL;
 
-      const res = await axios.post("http://localhost:5000/api/otp/verify", {
+      const res = await axios.post(`${baseUrl}/api/otp/verify`, {
         email,
         code,
       });

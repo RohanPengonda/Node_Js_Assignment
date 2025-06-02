@@ -9,14 +9,11 @@ const Login = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    const baseUrl = import.meta.env.VITE_SERVER_URL;
+
     try {
-      // for email and passord
-      await axios.post("http://localhost:5000/api/auth/login", {
-        email,
-        password,
-      });
-      // for sending otp
-      await axios.post("http://localhost:5000/api/otp/send", { email });
+      await axios.post(`${baseUrl}/api/auth/login`, { email, password });
+      await axios.post(`${baseUrl}/api/otp/send`, { email });
 
       localStorage.setItem("email", email);
       navigate("/otp");
@@ -27,9 +24,9 @@ const Login = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-200 ">
+    <div className="flex items-center justify-center min-h-screen bg-gray-200">
       <div className="p-4 rounded-lg w-80 bg-white">
-        <h2 className=" text-2xl font-bold text-center mt-4 mb-4">Login</h2>
+        <h2 className="text-2xl font-bold text-center mt-4 mb-4">Login</h2>
         <form onSubmit={handleLogin} className="py-5">
           <div className="flex flex-col items-center justify-center p-2">
             <input
@@ -51,13 +48,13 @@ const Login = () => {
 
             <button
               type="submit"
-              className="w-1/3  text-white py-2 rounded  cursor-pointer bg-green-600 mb-4 hover:bg-green-700"
+              className="w-1/3 text-white py-2 rounded cursor-pointer bg-green-600 mb-4 hover:bg-green-700"
             >
               Login
             </button>
             <Link
               to="/register"
-              className="block text-center text-blue-500 mt-2 "
+              className="block text-center text-blue-500 mt-2"
             >
               Create Account
             </Link>

@@ -27,7 +27,8 @@ const ThankYou = () => {
 
   const handleDelete = async () => {
     try {
-      await axios.delete(`http://localhost:5000/api/user/delete/${user.email}`);
+      const baseUrl = import.meta.env.VITE_SERVER_URL;
+      await axios.delete(`${baseUrl}/api/user/delete/${user.email}`);
       localStorage.clear();
       toast.success("Account deleted");
       setTimeout(() => navigate("/"), 1500);
